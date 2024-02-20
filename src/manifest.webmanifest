@@ -1,0 +1,9 @@
+{
+  "name": "CAI Arosio Services",
+  "short_name": "CAI Arosio Services",
+  "theme_color": "#488aff",
+  "background_color": "#488aff",
+  "display": "standalone",
+  "scope": "./",
+  "start_url": "./"
+}

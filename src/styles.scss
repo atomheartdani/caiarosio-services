@@ -1,0 +1,88 @@
+/*
+ * Entry point of global application style.
+ * Component-specific style should not go here and be included directly as part of the components.
+ */
+/*
+// Theme variables, must be included before the libraries to allow overriding defaults
+@import "theme/theme-variables";
+
+// 3rd party libraries
+@import "material-design-icons-iconfont/src/material-design-icons";
+
+// Angular Material custom theme
+// The mixins below must be included once so we separated them from the variables
+@import "@angular/material/theming";
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($app-theme);
+
+// Theme customization
+@import "theme/theme";*/
+
+/* You can add global styles to this file, and also import other style files */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  height: 100%;
+}
+
+.icon-spin {
+  animation-name: rotate;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+// Customize dialog width by screen size
+.mat-dialog-responsive {
+  max-width: 95% !important;
+  width: 60%;
+
+  @media (max-width: 992px) {
+    width: 80%;
+  }
+
+  @media (max-width: 768px) {
+    width: 90%;
+  }
+
+  @media (max-width: 576px) {
+    width: 100%;
+  }
+}
+
+// Disable stepper navigation from headers
+.mat-step-header {
+  pointer-events: none !important;
+}
+
+.mdc-button {
+  letter-spacing: normal !important;
+}
+
+.mat-mdc-card-header-text {
+  width: 100%;
+}
