@@ -13,6 +13,7 @@ import { CacheInterceptor } from './@shared/http/cache.interceptor';
 import { MatPaginatorIntlIta } from './@shared/mat-paginator-intl-ita';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomeModule } from './home/home.module';
 import { MaterialModule } from './material.module';
 import { ShellModule } from './shell/shell.module';
 
@@ -34,6 +35,7 @@ const routes: Routes = [];
     BrowserAnimationsModule,
     MaterialModule,
     SharedModule,
+    HomeModule,
     ShellModule,
     AppRoutingModule,
   ],
