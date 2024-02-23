@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="wrapper" *ngFor="let trip of trips$ | async">
+    <mat-card (click)="navigate(trip.id)">
+      <mat-card-header>
+        <mat-card-title>{{ trip.date }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="mat-body">{{ trip.title }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

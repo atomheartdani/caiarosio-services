@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { TripSelectorComponent } from './trip-selector/trip-selector.component';
 import { YearSelectorComponent } from './year-selector/year-selector.component';
 
 const routes: Routes = [
@@ -9,6 +10,10 @@ const routes: Routes = [
       {
         path: '',
         component: YearSelectorComponent,
+      },
+      {
+        path: 'tripsbooklet/:year',
+        component: TripSelectorComponent,
       },
     ],
   },
