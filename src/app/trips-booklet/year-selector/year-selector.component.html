@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="wrapper" *ngFor="let year of years$ | async">
+    <mat-card (click)="navigate(year)">
+      <mat-card-content>
+        <p class="mat-h3">{{ year }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

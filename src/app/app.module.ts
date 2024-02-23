@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
 import { MaterialModule } from './material.module';
 import { ShellModule } from './shell/shell.module';
+import { TripsBookletModule } from './trips-booklet/trips-booklet.module';
 
 const routes: Routes = [];
 
@@ -36,6 +37,7 @@ const routes: Routes = [];
     MaterialModule,
     SharedModule,
     HomeModule,
+    TripsBookletModule,
     ShellModule,
     AppRoutingModule,
   ],

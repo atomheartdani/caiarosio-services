@@ -6,6 +6,10 @@ export const routes: Routes = [
     path: '',
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
+  {
+    path: 'tripsbooklet',
+    loadChildren: () => import('./trips-booklet/trips-booklet.module').then((m) => m.TripsBookletModule),
+  },
   // Fallback when no prior route is matched
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
