@@ -1,0 +1,60 @@
+<div class="container">
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="form" class="flex-column">
+        <div class="flex-row">
+          <mat-form-field>
+            <mat-label>Titolo</mat-label>
+            <input matInput id="title" formControlName="title" />
+          </mat-form-field>
+        </div>
+        <div class="flex-row">
+          <mat-form-field class="flex-25">
+            <mat-label>Data</mat-label>
+            <input matInput id="date" formControlName="date" />
+          </mat-form-field>
+        </div>
+        <div class="flex-row">
+          <mat-form-field>
+            <mat-label>Regione</mat-label>
+            <input matInput id="region" formControlName="region" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Zona</mat-label>
+            <input matInput id="zone" formControlName="zone" />
+          </mat-form-field>
+        </div>
+        <div class="flex-row">
+          <mat-form-field>
+            <mat-label>Difficoltà</mat-label>
+            <input matInput id="difficulty" formControlName="difficulty" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Tempo di percorrenza</mat-label>
+            <input matInput id="estimatedTime" formControlName="estimatedTime" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Dislivello</mat-label>
+            <input matInput id="elevationGain" formControlName="elevationGain" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Quota di arrivo</mat-label>
+            <input matInput id="maxHeight" formControlName="maxHeight" />
+          </mat-form-field>
+        </div>
+        <div class="flex-row">
+          <mat-form-field>
+            <mat-label>Equipaggiamento</mat-label>
+            <input matInput id="gear" formControlName="gear" />
+          </mat-form-field>
+        </div>
+        <div class="flex-row">
+          <mat-form-field>
+            <mat-label>Descrizione</mat-label>
+            <textarea matInput id="description" formControlName="description" rows="5"></textarea>
+          </mat-form-field>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -7,6 +7,10 @@ export const routes: Routes = [
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
   {
+    path: 'trips',
+    loadChildren: () => import('./trips/trips.module').then((m) => m.TripsModule),
+  },
+  {
     path: 'tripsbooklet',
     loadChildren: () => import('./trips-booklet/trips-booklet.module').then((m) => m.TripsBookletModule),
   },

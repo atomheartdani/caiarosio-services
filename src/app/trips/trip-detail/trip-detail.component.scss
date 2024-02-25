@@ -1,0 +1,41 @@
+.container {
+  padding: 1em;
+}
+
+.flex-column {
+  align-items: left;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.flex-row {
+  align-items: stretch;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0 16px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.flex-75 {
+  flex-basis: 75%;
+  max-width: 75%;
+}
+
+.flex-50 {
+  flex-basis: 50%;
+  max-width: 50%;
+}
+
+.flex-25 {
+  flex-basis: 25%;
+  max-width: 25%;
+}
+
+.mat-mdc-form-field {
+  flex-grow: 1;
+}
