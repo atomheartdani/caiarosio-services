@@ -1,23 +1,29 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { of } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TripHeader } from '@app/@shared/models/trips.model';
+import { TripsService } from '@app/@shared/services/trips.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-trip-selector',
   templateUrl: './trip-selector.component.html',
   styleUrl: './trip-selector.component.scss',
 })
-export class TripSelectorComponent {
-  trips$ = of([
-    { id: 1, date: '2024-04-01', title: 'Titolo gita 1' },
-    { id: 2, date: '2024-04-02', title: 'Titolo gita 2' },
-    { id: 3, date: '2024-04-03', title: 'Titolo gita 3' },
-    { id: 4, date: '2024-04-04', title: 'Titolo gita 4' },
-    { id: 5, date: '2024-04-05', title: 'Titolo gita 5' },
-    { id: 6, date: '2024-04-06', title: 'Titolo gita 6' },
-  ]);
+export class TripSelectorComponent implements OnInit {
+  selectedYear: number;
+  trips$: Observable<TripHeader[]>;
 
-  constructor(private router: Router) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private tripsService: TripsService,
+  ) {
+    this.selectedYear = Number(this.activatedRoute.snapshot.paramMap.get('year'));
+  }
+
+  ngOnInit(): void {
+    this.trips$ = this.tripsService.getTripsByYear(this.selectedYear);
+  }
 
   navigate(element: number): void {
     this.router.navigate(['trips', element]);
