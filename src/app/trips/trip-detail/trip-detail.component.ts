@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Trip } from '@app/@shared/models/trips.model';
 import { TripsService } from '@app/@shared/services/trips.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-trip-detail',
@@ -12,6 +13,7 @@ import { TripsService } from '@app/@shared/services/trips.service';
 export class TripDetailComponent implements OnInit {
   form: FormGroup;
   id: number;
+  isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -36,6 +38,8 @@ export class TripDetailComponent implements OnInit {
         gear: [response.gear, Validators.required],
         description: [response.description, Validators.required],
       });
+
+      this.isLoading$.next(false);
     });
   }
 }

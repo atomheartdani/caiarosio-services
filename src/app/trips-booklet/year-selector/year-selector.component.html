@@ -1,4 +1,5 @@
 <div class="container">
+  <app-loader [isLoading]="isLoading$ | async" [size]="3"></app-loader>
   <div class="wrapper" *ngFor="let year of years$ | async">
     <mat-card (click)="navigate(year)">
       <mat-card-content>

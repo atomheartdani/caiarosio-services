@@ -1,4 +1,5 @@
 <div class="container">
+  <app-loader [isLoading]="isLoading$ | async" [size]="3"></app-loader>
   <div class="wrapper" *ngFor="let trip of trips$ | async">
     <mat-card (click)="navigate(trip.id)">
       <mat-card-header>

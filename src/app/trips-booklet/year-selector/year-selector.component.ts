@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TripsService } from '@app/@shared/services/trips.service';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, finalize } from 'rxjs';
 
 @Component({
   selector: 'app-year-selector',
@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
   styleUrl: './year-selector.component.scss',
 })
 export class YearSelectorComponent implements OnInit {
+  isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   years$: Observable<number[]>;
 
   constructor(
@@ -18,7 +19,7 @@ export class YearSelectorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.years$ = this.tripsService.getAllYears();
+    this.years$ = this.tripsService.getAllYears().pipe(finalize(() => this.isLoading$.next(false)));
   }
 
   navigate(element: number): void {

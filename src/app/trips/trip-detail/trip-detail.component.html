@@ -1,7 +1,8 @@
 <div class="container">
   <mat-card>
     <mat-card-content>
-      <form [formGroup]="form" class="flex-column">
+      <app-loader [isLoading]="isLoading$ | async"></app-loader>
+      <form [formGroup]="form" class="flex-column" *ngIf="(isLoading$ | async) === false">
         <div class="flex-row">
           <mat-form-field>
             <mat-label>Titolo</mat-label>

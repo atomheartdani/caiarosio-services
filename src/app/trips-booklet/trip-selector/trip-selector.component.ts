@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TripHeader } from '@app/@shared/models/trips.model';
 import { TripsService } from '@app/@shared/services/trips.service';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, finalize } from 'rxjs';
 
 @Component({
   selector: 'app-trip-selector',
@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
   styleUrl: './trip-selector.component.scss',
 })
 export class TripSelectorComponent implements OnInit {
+  isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   selectedYear: number;
   trips$: Observable<TripHeader[]>;
 
@@ -22,7 +23,7 @@ export class TripSelectorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.trips$ = this.tripsService.getTripsByYear(this.selectedYear);
+    this.trips$ = this.tripsService.getTripsByYear(this.selectedYear).pipe(finalize(() => this.isLoading$.next(false)));
   }
 
   navigate(element: number): void {
