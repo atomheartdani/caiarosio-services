@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TripDetailComponent } from './trip-detail/trip-detail.component';
+import { TripListComponent } from './trip-list/trip-list.component';
 
 const routes: Routes = [
   {
@@ -8,7 +9,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: TripDetailComponent,
+        component: TripListComponent,
       },
       {
         path: 'trips/:id',
