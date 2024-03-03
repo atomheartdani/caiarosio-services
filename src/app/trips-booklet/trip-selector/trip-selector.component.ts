@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TripHeader } from '@app/@shared/models/trips.model';
 import { TripsService } from '@app/@shared/services/trips.service';
+import { TripNewComponent } from '@app/trips/trip-new/trip-new.component';
 import { BehaviorSubject, Observable, finalize } from 'rxjs';
 
 @Component({
@@ -16,6 +18,7 @@ export class TripSelectorComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    private dialog: MatDialog,
     private router: Router,
     private tripsService: TripsService,
   ) {
@@ -28,5 +31,14 @@ export class TripSelectorComponent implements OnInit {
 
   navigate(element: number): void {
     this.router.navigate(['trips', element]);
+  }
+
+  newTrip(): void {
+    const dialogRef = this.dialog.open(TripNewComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result > 0) {
+        this.navigate(result);
+      }
+    });
   }
 }

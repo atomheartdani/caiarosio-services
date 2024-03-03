@@ -6,6 +6,10 @@ import { Trip, TripHeader } from '../models/trips.model';
   providedIn: 'root',
 })
 export class TripsService {
+  createTrip(toSave: TripHeader): Observable<number> {
+    return of(1);
+  }
+
   getAllYears(): Observable<number[]> {
     return of([2025, 2024, 2023, 2022]);
   }

@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>Nuova gita</h1>
+<mat-dialog-content>
+  <form [formGroup]="form" class="flex-column">
+    <mat-form-field>
+      <mat-label>Titolo</mat-label>
+      <input matInput id="title" formControlName="title" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Data</mat-label>
+      <input matInput id="date" formControlName="date" />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-raised-button color="primary" tabindex="-1" (click)="save()" [disabled]="isLoading$ | async">
+    Ok
+    <mat-icon class="icon-spin" aria-label="Refresh" *ngIf="isLoading$ | async">refresh</mat-icon>
+  </button>
+  <button mat-raised-button color="primary" tabindex="-1" (click)="close()">Annulla</button>
+</mat-dialog-actions>

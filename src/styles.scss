@@ -74,6 +74,11 @@ body {
   }
 }
 
+// Fix form label being cut when the first element of a dialog is a form field
+.mat-dialog-responsive .mat-mdc-dialog-title + .mat-mdc-dialog-content {
+  padding-top: 5px;
+}
+
 // Disable stepper navigation from headers
 .mat-step-header {
   pointer-events: none !important;
