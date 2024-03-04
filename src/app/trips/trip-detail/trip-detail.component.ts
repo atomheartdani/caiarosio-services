@@ -25,21 +25,24 @@ export class TripDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.tripsService.getTrip(this.id).subscribe((response: Trip) => {
-      this.form = this.formBuilder.group({
-        id: [response.id],
-        date: [response.date, Validators.required],
-        title: [response.title, Validators.required],
-        region: [response.region, Validators.required],
-        zone: [response.zone, Validators.required],
-        difficulty: [response.difficulty, Validators.required],
-        estimatedTime: [response.estimatedTime, Validators.required],
-        elevationGain: [response.elevationGain, Validators.required],
-        maxHeight: [response.maxHeight, Validators.required],
-        gear: [response.gear, Validators.required],
-        description: [response.description, Validators.required],
-      });
-
+      this.form = this.toFormGroup(response);
       this.isLoading$.next(false);
+    });
+  }
+
+  private toFormGroup(trip: Trip): FormGroup {
+    return this.formBuilder.group({
+      id: [trip.id],
+      date: [trip.date, Validators.required],
+      title: [trip.title, Validators.required],
+      region: [trip.region, Validators.required],
+      zone: [trip.zone, Validators.required],
+      difficulty: [trip.difficulty, Validators.required],
+      estimatedTime: [trip.estimatedTime, Validators.required],
+      elevationGain: [trip.elevationGain, Validators.required],
+      maxHeight: [trip.maxHeight, Validators.required],
+      gear: [trip.gear, Validators.required],
+      description: [trip.description, Validators.required],
     });
   }
 }
