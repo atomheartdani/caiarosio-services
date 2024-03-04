@@ -2,11 +2,16 @@
   <mat-card>
     <mat-card-content>
       <app-loader [isLoading]="isLoading$ | async"></app-loader>
-      <form [formGroup]="form" class="flex-column" *ngIf="(isLoading$ | async) === false">
+      <form [formGroup]="form" *ngIf="(isLoading$ | async) === false">
         <div formArrayName="tripDays">
-          <div *ngFor="let tripDay of tripDays.controls; let i = index">
+          <div *ngFor="let tripDay of tripDays.controls; let i = index" class="margin-bottom-extra">
+            <div>
+              <p class="mat-h1" *ngIf="i === 0">Gita: {{ baseTrip.title }}</p>
+              <p class="mat-h2" *ngIf="i > 0">Giorno {{ i + 1 }}</p>
+            </div>
+            <mat-divider></mat-divider>
             <div [formGroupName]="i">
-              <div class="flex-row">
+              <div class="flex-row" *ngIf="i === 0">
                 <mat-form-field>
                   <mat-label>Titolo</mat-label>
                   <input matInput id="title" formControlName="title" />
@@ -60,6 +65,12 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="flex-row flex-center">
+          <button mat-raised-button color="primary" tabindex="-1" (click)="addTripDay()">
+            Aggiungi giorno
+            <mat-icon iconPositionEnd>add</mat-icon>
+          </button>
         </div>
       </form>
     </mat-card-content>

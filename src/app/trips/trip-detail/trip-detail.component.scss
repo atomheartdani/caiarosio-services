@@ -1,13 +1,8 @@
+@use "@angular/material" as mat;
+@import "src/theme/theme-variables";
+
 .container {
   padding: 1em;
-}
-
-.flex-column {
-  align-items: left;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
 }
 
 .flex-row {
@@ -21,21 +16,33 @@
   width: 100%;
 }
 
-.flex-75 {
-  flex-basis: 75%;
-  max-width: 75%;
-}
-
-.flex-50 {
-  flex-basis: 50%;
-  max-width: 50%;
+.flex-center {
+  justify-content: center;
 }
 
 .flex-25 {
-  flex-basis: 25%;
-  max-width: 25%;
+  @media (min-width: 992px) {
+    flex-basis: 25%;
+    max-width: 25%;
+  }
+}
+
+.margin-bottom-extra {
+  margin-bottom: 24px;
 }
 
 .mat-mdc-form-field {
   flex-grow: 1;
+}
+
+.mat-divider {
+  border-color: mat.get-color-from-palette($app-primary);
+  border-width: 2px 0;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.mat-h1,
+.mat-h2 {
+  margin: 0 0 4px;
 }

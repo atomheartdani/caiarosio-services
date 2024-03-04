@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Trip } from '@app/@shared/models/trips.model';
 import { TripsService } from '@app/@shared/services/trips.service';
@@ -11,6 +11,7 @@ import { BehaviorSubject } from 'rxjs';
   styleUrl: './trip-detail.component.scss',
 })
 export class TripDetailComponent implements OnInit {
+  baseTrip: Trip;
   form: FormGroup;
   groupId: number;
   isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
@@ -25,6 +26,8 @@ export class TripDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.tripsService.getTrip(this.groupId).subscribe((response: Trip[]) => {
+      this.baseTrip = response[0];
+
       let tripDays: FormArray = this.formBuilder.array([]);
       response.forEach((element) => tripDays.push(this.toFormGroup(element)));
 
@@ -34,6 +37,17 @@ export class TripDetailComponent implements OnInit {
 
       this.isLoading$.next(false);
     });
+  }
+
+  addTripDay() {
+    const newTripDay = {} as Trip;
+    newTripDay.groupId = this.baseTrip.groupId;
+    newTripDay.title = this.baseTrip.title;
+    newTripDay.date = this.baseTrip.date; // TODO aggiungere automaticamente un giorno
+    newTripDay.region = this.baseTrip.region;
+    newTripDay.zone = this.baseTrip.zone;
+
+    this.tripDays.push(this.toFormGroup(newTripDay));
   }
 
   get tripDays(): FormArray {
