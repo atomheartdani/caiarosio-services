@@ -12,7 +12,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class TripDetailComponent implements OnInit {
   form: FormGroup;
-  id: number;
+  groupId: number;
   isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
   constructor(
@@ -20,12 +20,11 @@ export class TripDetailComponent implements OnInit {
     private formBuilder: FormBuilder,
     private tripsService: TripsService,
   ) {
-    this.id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+    this.groupId = Number(this.activatedRoute.snapshot.paramMap.get('groupId'));
   }
 
   ngOnInit(): void {
-    this.tripsService.getTrip(this.id).subscribe((response: Trip) => {
-      this.form = this.toFormGroup(response);
+    this.tripsService.getTrip(this.groupId).subscribe((response: Trip[]) => {
       this.isLoading$.next(false);
     });
   }
@@ -33,6 +32,7 @@ export class TripDetailComponent implements OnInit {
   private toFormGroup(trip: Trip): FormGroup {
     return this.formBuilder.group({
       id: [trip.id],
+      groupId: [trip.groupId],
       date: [trip.date, Validators.required],
       title: [trip.title, Validators.required],
       region: [trip.region, Validators.required],

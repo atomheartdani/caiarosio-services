@@ -12,7 +12,7 @@ const routes: Routes = [
         component: TripListComponent,
       },
       {
-        path: 'trips/:id',
+        path: 'trips/:groupId',
         component: TripDetailComponent,
       },
     ],

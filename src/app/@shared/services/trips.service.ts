@@ -52,6 +52,7 @@ export class TripsService {
   private getFullTrip(): Trip {
     return {
       id: 1,
+      groupId: 1,
       date: '2024-04-01',
       title: 'Titolo gita 1',
       region: 'Lombardia',

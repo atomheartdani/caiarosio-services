@@ -5,6 +5,7 @@ export interface TripHeader {
 }
 
 export interface Trip extends TripHeader {
+  groupId: number;
   region: string;
   zone: string;
   difficulty: string;
