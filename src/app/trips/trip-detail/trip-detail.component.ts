@@ -25,8 +25,19 @@ export class TripDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.tripsService.getTrip(this.groupId).subscribe((response: Trip[]) => {
+      let tripDays: FormArray = this.formBuilder.array([]);
+      response.forEach((element) => tripDays.push(this.toFormGroup(element)));
+
+      this.form = this.formBuilder.group({
+        tripDays: tripDays,
+      });
+
       this.isLoading$.next(false);
     });
+  }
+
+  get tripDays(): FormArray {
+    return this.form.get('tripDays') as FormArray;
   }
 
   private toFormGroup(trip: Trip): FormGroup {

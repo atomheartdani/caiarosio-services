@@ -15,8 +15,8 @@ export class TripsService {
     return of([2025, 2024, 2023, 2022]);
   }
 
-  getTrip(id: number): Observable<Trip> {
-    return of(this.getFullTrip());
+  getTrip(id: number): Observable<Trip[]> {
+    return of([this.getFullTrip(), this.getFullTrip()]);
   }
 
   getTrips(filter: string, pageIndex: number, pageSize: number): Observable<Page<Trip>> {
