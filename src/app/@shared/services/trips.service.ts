@@ -52,6 +52,12 @@ export class TripsService {
     ]);
   }
 
+  // TODO return type
+  save(toSave: Trip[]): Observable<void> {
+    // TODO
+    throw new Error('Method not implemented.');
+  }
+
   // TODO delete this
   private getFullTrip(): Trip {
     return {

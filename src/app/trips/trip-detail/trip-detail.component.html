@@ -87,6 +87,10 @@
             Aggiungi giorno
             <mat-icon iconPositionEnd>add</mat-icon>
           </button>
+          <button mat-raised-button color="primary" tabindex="-1" (click)="save()" [disabled]="isSaving$ | async">
+            Salva
+            <mat-icon iconPositionEnd>save</mat-icon>
+          </button>
         </div>
       </form>
     </mat-card-content>
