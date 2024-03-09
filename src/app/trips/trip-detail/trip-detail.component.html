@@ -25,6 +25,18 @@
               </div>
               <div class="flex-row">
                 <mat-form-field>
+                  <mat-label>Nazione</mat-label>
+                  <mat-select
+                    formControlName="nation"
+                    [compareWith]="compareById"
+                    (selectionChange)="changeNation($event)"
+                  >
+                    <mat-option *ngFor="let nation of nations$ | async" [value]="nation">
+                      {{ nation.name }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field *ngIf="showRegion$ | async">
                   <mat-label>Regione</mat-label>
                   <input matInput id="region" formControlName="region" />
                 </mat-form-field>

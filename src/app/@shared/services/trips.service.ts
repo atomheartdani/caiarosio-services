@@ -55,6 +55,7 @@ export class TripsService {
       groupId: 1,
       date: '2024-04-01',
       title: 'Titolo gita 1',
+      nation: { id: 1, name: 'Italia', isForeign: false },
       region: 'Lombardia',
       zone: 'Valmalenco',
       difficulty: 'EE',

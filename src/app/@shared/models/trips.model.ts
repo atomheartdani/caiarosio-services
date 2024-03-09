@@ -1,3 +1,5 @@
+import { Nation } from './geography.model';
+
 export interface TripHeader {
   id: number;
   date: string;
@@ -6,6 +8,7 @@ export interface TripHeader {
 
 export interface Trip extends TripHeader {
   groupId: number;
+  nation: Nation;
   region: string;
   zone: string;
   difficulty: string;

@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSelectChange } from '@angular/material/select';
 import { ActivatedRoute } from '@angular/router';
+import { Nation } from '@app/@shared/models/geography.model';
 import { Trip } from '@app/@shared/models/trips.model';
+import { GeographyService } from '@app/@shared/services/geography.service';
 import { TripsService } from '@app/@shared/services/trips.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-trip-detail',
@@ -14,17 +17,22 @@ export class TripDetailComponent implements OnInit {
   baseTrip: Trip;
   form: FormGroup;
   groupId: number;
+  showRegion$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  nations$: Observable<Nation[]>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
+    private geographyService: GeographyService,
     private tripsService: TripsService,
   ) {
     this.groupId = Number(this.activatedRoute.snapshot.paramMap.get('groupId'));
   }
 
   ngOnInit(): void {
+    this.nations$ = this.geographyService.getNations();
+
     this.tripsService.getTrip(this.groupId).subscribe((response: Trip[]) => {
       this.baseTrip = response[0];
 
@@ -44,10 +52,19 @@ export class TripDetailComponent implements OnInit {
     newTripDay.groupId = this.baseTrip.groupId;
     newTripDay.title = this.baseTrip.title;
     newTripDay.date = this.baseTrip.date; // TODO aggiungere automaticamente un giorno
+    newTripDay.nation = this.baseTrip.nation;
     newTripDay.region = this.baseTrip.region;
     newTripDay.zone = this.baseTrip.zone;
 
     this.tripDays.push(this.toFormGroup(newTripDay));
+  }
+
+  compareById(o1: any, o2: any): boolean {
+    return o1.id === o2.id;
+  }
+
+  changeNation(event: MatSelectChange) {
+    this.showRegion$.next(!event.value.isForeign);
   }
 
   get tripDays(): FormArray {
@@ -60,6 +77,7 @@ export class TripDetailComponent implements OnInit {
       groupId: [trip.groupId],
       date: [trip.date, Validators.required],
       title: [trip.title, Validators.required],
+      nation: [trip.nation, Validators.required],
       region: [trip.region, Validators.required],
       zone: [trip.zone, Validators.required],
       difficulty: [trip.difficulty, Validators.required],
