@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
 import { ActivatedRoute } from '@angular/router';
 import { Nation } from '@app/@shared/models/geography.model';
-import { Trip } from '@app/@shared/models/trips.model';
+import { Difficulty, Trip } from '@app/@shared/models/trips.model';
 import { GeographyService } from '@app/@shared/services/geography.service';
 import { TripsService } from '@app/@shared/services/trips.service';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -15,6 +15,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class TripDetailComponent implements OnInit {
   baseTrip: Trip;
+  difficulties$: Observable<Difficulty[]>;
   form: FormGroup;
   groupId: number;
   showRegion$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
@@ -31,6 +32,7 @@ export class TripDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.difficulties$ = this.tripsService.getDifficulties();
     this.nations$ = this.geographyService.getNations();
 
     this.tripsService.getTrip(this.groupId).subscribe((response: Trip[]) => {

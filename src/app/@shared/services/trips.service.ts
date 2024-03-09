@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Page } from '../models/page.model';
-import { Trip, TripHeader } from '../models/trips.model';
+import { Difficulty, Trip, TripHeader } from '../models/trips.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +13,10 @@ export class TripsService {
 
   getAllYears(): Observable<number[]> {
     return of([2025, 2024, 2023, 2022]);
+  }
+
+  getDifficulties(): Observable<Difficulty[]> {
+    return of(Object.values(Difficulty));
   }
 
   getTrip(id: number): Observable<Trip[]> {
@@ -58,7 +62,7 @@ export class TripsService {
       nation: { id: 1, name: 'Italia', isForeign: false },
       region: 'Lombardia',
       zone: 'Valmalenco',
-      difficulty: 'EE',
+      difficulty: Difficulty.EE,
       estimatedTime: '4 ore e 30',
       elevationGain: '1000',
       maxHeight: 2560,

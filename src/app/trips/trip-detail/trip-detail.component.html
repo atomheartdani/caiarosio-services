@@ -48,7 +48,11 @@
               <div class="flex-row">
                 <mat-form-field>
                   <mat-label>Difficoltà</mat-label>
-                  <input matInput id="difficulty" formControlName="difficulty" />
+                  <mat-select formControlName="difficulty">
+                    <mat-option *ngFor="let difficulty of difficulties$ | async" [value]="difficulty">
+                      {{ difficulty }}
+                    </mat-option>
+                  </mat-select>
                 </mat-form-field>
                 <mat-form-field>
                   <mat-label>Tempo di percorrenza</mat-label>
