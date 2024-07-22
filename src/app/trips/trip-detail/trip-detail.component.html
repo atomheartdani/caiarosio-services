@@ -20,7 +20,9 @@
               <div class="flex-row">
                 <mat-form-field class="flex-25">
                   <mat-label>Data</mat-label>
-                  <input matInput id="date" formControlName="date" />
+                  <input matInput id="date" formControlName="date" [matDatepicker]="datePicker" />
+                  <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+                  <mat-datepicker #datePicker></mat-datepicker>
                 </mat-form-field>
               </div>
               <div class="flex-row">
