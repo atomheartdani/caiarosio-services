@@ -1,13 +1,11 @@
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { NgModule, isDevMode } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogConfig } from '@angular/material/dialog';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouteReuseStrategy, RouterModule, Routes } from '@angular/router';
-import { ServiceWorkerModule } from '@angular/service-worker';
+import { RouteReuseStrategy } from '@angular/router';
 import { ApiPrefixInterceptor, ErrorHandlerInterceptor, RouteReusableStrategy, SharedModule } from './@shared';
 import { CacheInterceptor } from './@shared/http/cache.interceptor';
 import { MatPaginatorIntlIta } from './@shared/mat-paginator-intl-ita';
@@ -19,21 +17,10 @@ import { ShellModule } from './shell/shell.module';
 import { TripsBookletModule } from './trips-booklet/trips-booklet.module';
 import { TripsModule } from './trips/trips.module';
 
-const routes: Routes = [];
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000',
-    }),
-    FormsModule,
-    HttpClientModule,
-    RouterModule.forRoot(routes, { useHash: true }),
     BrowserAnimationsModule,
     MaterialModule,
     SharedModule,
@@ -41,7 +28,7 @@ const routes: Routes = [];
     TripsModule,
     TripsBookletModule,
     ShellModule,
-    AppRoutingModule,
+    AppRoutingModule, // must be imported as the last module as it contains the fallback route
   ],
   providers: [
     {
